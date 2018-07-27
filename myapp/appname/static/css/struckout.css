@@ -1,0 +1,42 @@
+html{
+	/* 背景画像が読み込まれる前に表示される背景のカラー */
+	background-color: lightblue;
+	/* ボタンをセンターに */
+	text-align:center;
+	/* 画像ファイルの指定 */
+	background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI3JtZDhPehGIiqZHx5CxbpTUnYPD8L4vk7rBBiPRoiQEJwx9A);
+	/* 画像を常に天地左右の中央に配置 */
+	background-position: center center;
+	/* 画像をタイル状に繰り返し表示しない */
+	background-repeat: no-repeat;
+	/* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+	background-attachment: fixed;
+	/* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+	background-size: cover;
+}
+
+#title{
+    color:       blue;
+	/* 斜体 */
+	font-style:  oblique;
+	/* フォントの字体 */
+	font-family:  fantasy;
+	font-size:   500%;
+	text-align:center;
+}
+
+/* 数字のボタン */
+.num{
+	font-size:   300%;
+}
+
+/* 文字のボタン */
+.value{
+	font-size:   150%;
+}
+
+/* 結果の文字の出力 */
+h3{
+	color:       lightblue;
+	text-align:  center;
+}

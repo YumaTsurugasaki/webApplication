@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,  initial-scale=1.0">
+
+	<title>Struck Out Game</title>
+	<link rel="stylesheet" type "text/css" href="../../static/css/struckout.css">
+</head>
+
+<body>
+	<div id="title">Struck Out Game</div>
+	
+	<form method="POST">
+		<input type="hidden" name="display_number" value="{{display_number}}">	
+		<input type="hidden" name="opr" value="{{opr}}">
+		<input type="hidden" name="prev_number" value="{{prev_number}}">
+		<input type="hidden" name="new_number" value="{{new_number}}">
+		
+	<div class="struckout">
+	<div class="screen" id="screen-number">
+	{{display_number}}
+	</div>
+
+	<div class="btn">
+	
+	<div class="row">
+		<button class="num" value="7" name="btn_num" type="submit">7</button>
+		<button class="num" value="8" name="btn_num" type="submit">8</button>
+		<button class="num" value="9" name="btn_num" type="submit">9</button>
+	</div>
+	
+	<div class="row">
+		<button class="num" value="4" name="btn_num" type="submit">4</button>
+		<button class="num" value="5" name="btn_num" type="submit">5</button>
+		<button class="num" value="6" name="btn_num" type="submit">6</button>
+	</div>
+	
+	<div class="row">
+		<button class="num" value="1" name="btn_num" type="submit">1</button>
+		<button class="num" value="2" name="btn_num" type="submit">2</button>
+		<button class="num" value="3" name="btn_num" type="submit">3</button>
+	</div>
+	
+	<div class="row">
+		<button value="string" name="pitch" type="submit">Click here to pitch</button>
+		<button value="string" name="result" type="submit">result</button>
+	</div>
+	
+	</div>
+	</div>
+	
+	{% if msg %}
+		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{msg}}</h3>
+	{% endif %}
+
+	<!--終了時の結果表示-->
+	{% if context == "Result" %}
+		<h3>Game Finish</h3>
+		<h3>Total Point:{{num}}</h3>
+	<!--終了時に投げようとしたときの表示-->
+	{% elif count < 0 %}
+		<h3>Game Finish</h3>
+	{% else %}
+		<!--ゲームスタートの表示-->
+		{% if value == 65536 %}
+			<h3>{{context}}</h3>	
+		{% else %}
+			<!--ちゃんと投げたとき、数字のボタンを間違って押していない-->
+			{% if value != 10 %}
+				<!--1~9の的に当たった時の表示、はずれていない(0)-->
+				{% if value != 0 %}
+					<!--初めて当たった時の表示-->
+					{% if context != "Already Open" %}
+						<h3>{{context}}{{value}}</h3>	
+					{% else %}
+						<h3>{{value}} Is {{context}}</h3>	
+					{% endif %}
+				{% else %}
+					<h3>Not Struck</h3>
+				{% endif %}	
+			{% else %}
+				<h3>{{context}}</h3>
+			{% endif %}
+			<h3>{{count}} Remaining Ball</h3>
+		{% endif %}
+	{% endif %}
+	
+	{% csrf_token %} 
+	</form>
+	
+</body>
+</html>
