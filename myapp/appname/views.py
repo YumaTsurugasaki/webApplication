@@ -3,7 +3,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-import numpy.random as rd
+import numpy.random
 #配列を定義するためのもの
 import numpy
 
@@ -24,7 +24,7 @@ def appmain(request):
         return render(request, 'demo/struckout.html', {"context": "結果", "value": value, "count": appmain.count, "num": num})
 	
 	#乱数生成
-    value = rd.randint(low=0,high=9,size=1)
+    value = numpy.random.randint(low=0,high=9,size=1)
 
 	#ボールを投げた後に当たったか当たらなかったか
     if 'pitch' in request.POST:
